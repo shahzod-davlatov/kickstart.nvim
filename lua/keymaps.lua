@@ -42,5 +42,5 @@ vim.keymap.set('n', '<leader>cf', 'mF:%!eslint_d --stdin --fix-to-stdout --stdin
 
 vim.keymap.set('n', '<leader>tg', '<cmd>Neogit<CR>', { silent = true, desc = 'Neogit' })
 
-vim.keymap.set('n', 'grs', ':vsplit | lua vim.lsp.buf.definition()<CR>', { silent = true, desc = '[G]oto [D]efinition [V]ertical [S]plit' })
-vim.keymap.set('n', 'grS', ':split | lua vim.lsp.buf.definition()<CR>', { silent = true, desc = '[G]oto [D]efinition [H]orizontal [S]plit' })
+vim.keymap.set('n', '<leader>cs', ':vsplit | lua vim.lsp.buf.definition()<CR>', { silent = true, desc = '[G]oto [D]efinition [V]ertical [S]plit' })
+vim.keymap.set('n', '<leader>cS', ':split | lua vim.lsp.buf.definition()<CR>', { silent = true, desc = '[G]oto [D]efinition [H]orizontal [S]plit' })
