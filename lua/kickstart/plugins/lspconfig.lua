@@ -254,13 +254,13 @@ return {
             },
           },
         },
-        volar = {
+        vue_ls = {
           init_options = {
             vue = {
               complete = {
                 casing = {
                   tags = 'autoPascal',
-                  props = 'autoKebab',
+                  props = 'autoCamel',
                 },
               },
             },
