@@ -138,4 +138,5 @@ return {
       default_keymappings_enabled = true,
     },
   },
+  { 'numToStr/Comment.nvim', opts = {} },
 }
