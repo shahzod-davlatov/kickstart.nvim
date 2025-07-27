@@ -201,6 +201,42 @@ return {
 
       local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
 
+      local vue_plugin = {
+        name = '@vue/typescript-plugin',
+        location = vue_language_server_path,
+        languages = { 'vue' },
+        configNamespace = 'typescript',
+      }
+
+      local vtsls_config = {
+        settings = {
+          typescript = {
+            tsserver = {
+              maxTsServerMemory = 8192,
+            },
+          },
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                vue_plugin,
+              },
+            },
+          },
+        },
+        filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+      }
+
+      local vue_ls_config = {
+        init_options = {
+          vue = {
+            suggest = {
+              componentNameCasing = 'autoPascal',
+              propNameCasing = 'autoCamel',
+            },
+          },
+        },
+      }
+
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -224,54 +260,32 @@ return {
         -- ts_ls = {},
         --
 
-        -- ts_ls = {
-        --   init_options = {
-        --     plugins = {
-        --       {
-        --         name = '@vue/typescript-plugin',
-        --         location = vue_language_server_path,
-        --         languages = { 'vue' },
-        --       },
-        --     },
-        --   },
-        --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-        -- },
-        vtsls = {
-          filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-          settings = {
-            vtsls = {
-              tsserver = {
-                globalPlugins = {
-                  {
-                    name = '@vue/typescript-plugin',
-                    location = vue_language_server_path,
-                    languages = { 'vue' },
-                    configNamespace = 'typescript',
-                    enableForWorkspaceTypeScriptVersions = true,
-                  },
-                },
-              },
-            },
+        vtsls = vtsls_config,
+        vue_ls = vue_ls_config,
+        oxlint = {
+          filetypes = {
+            'javascript',
+            'javascriptreact',
+            'javascript.jsx',
+            'typescript',
+            'typescriptreact',
+            'typescript.tsx',
+            'vue',
           },
         },
-        vue_ls = {
-          init_options = {
-            vue = {
-              complete = {
-                casing = {
-                  tags = 'autoPascal',
-                  props = 'autoCamel',
-                },
-              },
-            },
-          },
-        },
+        prettierd = {},
+        eslint_d = {},
+        stylelint = {},
         tailwindcss = {},
+        jsonlint = {},
+        marksman = {},
+        markdownlint = {},
         rust_analyzer = {
           checkOnSave = {
             command = 'clippy',
           },
         },
+        stylua = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -302,15 +316,6 @@ return {
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code,
-        'prettierd',
-        'stylelint',
-        'eslint_d',
-        'oxlint',
-        'jsonls',
-        'marksman',
-      })
 
       for serverKey in pairs(servers or {}) do
         local server = servers[serverKey]

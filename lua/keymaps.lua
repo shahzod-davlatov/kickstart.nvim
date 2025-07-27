@@ -38,7 +38,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
--- vim.keymap.set('n', '<leader>cf', '<cmd>EslintFixAll<CR> | <cmd>w<CR>', { desc = 'ESLint Fix All', silent = true })
+-- vim.keymap.set('n', '<leader>cf', '<cmd>LspEslintFixAll<CR> | <cmd>w<CR>', { desc = 'ESLint Fix All', silent = true })
 vim.keymap.set('n', '<leader>cf', 'mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F | <cmd>w<CR>', { desc = 'ESLint Fix All', silent = true })
 
 vim.keymap.set('n', '<leader>tg', '<cmd>Neogit<CR>', { silent = true, desc = 'Neogit' })
